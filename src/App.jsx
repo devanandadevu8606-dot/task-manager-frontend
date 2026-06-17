@@ -6,8 +6,8 @@ import Register from "./pages/register.jsx";
 import Dashboard from "./pages/dashboard.jsx";
 import Tasks from "./pages/tasks.jsx";
 
-import Layout from "./components/Layout.jsx";
-import ProtectedRoute from "./utils/ProtectedRoute.jsx";
+import Layout from "./components/layout.jsx";
+import ProtectedRoute from "./utils/protectedroute.jsx";
 
 function App() {
   return (
