@@ -41,12 +41,12 @@ function Login() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h2>Login</h2>
+        <h2 style={{ marginBottom: "15px" }}>Welcome Back 👋</h2>
 
         <form onSubmit={handleLogin} style={styles.form}>
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             style={styles.input}
@@ -54,7 +54,7 @@ function Login() {
 
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             style={styles.input}
@@ -64,6 +64,16 @@ function Login() {
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
+
+        <p style={{ marginTop: "12px" }}>
+          New user?{" "}
+          <span
+            onClick={() => navigate("/register")}
+            style={{ color: "blue", cursor: "pointer" }}
+          >
+            Create account
+          </span>
+        </p>
       </div>
     </div>
   );
@@ -71,38 +81,43 @@ function Login() {
 
 export default Login;
 
+/* 🎨 STYLES */
 const styles = {
   container: {
     height: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "#f2f4f8",
+    background: "linear-gradient(to right, #4facfe, #00f2fe)",
   },
+
   card: {
-    width: "320px",
+    width: "340px",
     padding: "25px",
     background: "white",
-    borderRadius: "10px",
-    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+    borderRadius: "12px",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
     textAlign: "center",
   },
+
   form: {
     display: "flex",
     flexDirection: "column",
-    gap: "10px",
+    gap: "12px",
   },
+
   input: {
     padding: "10px",
-    borderRadius: "5px",
+    borderRadius: "6px",
     border: "1px solid #ccc",
   },
+
   button: {
     padding: "10px",
     background: "#007bff",
     color: "white",
     border: "none",
-    borderRadius: "5px",
+    borderRadius: "6px",
     cursor: "pointer",
   },
 };

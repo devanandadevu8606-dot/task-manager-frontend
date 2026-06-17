@@ -23,22 +23,18 @@ function Register() {
 
       alert("✅ Registration Successful");
 
-      // redirect to login
       navigate("/login");
-
     } catch (error) {
       console.log("REGISTER ERROR:", error.response?.data || error.message);
 
-      alert(
-        error.response?.data?.message || "❌ Register failed"
-      );
+      alert(error.response?.data?.message || "❌ Register failed");
     }
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h2>Register</h2>
+        <h2 style={{ marginBottom: "15px" }}>Create Account 🚀</h2>
 
         <form onSubmit={handleRegister} style={styles.form}>
           <input
@@ -67,6 +63,16 @@ function Register() {
             Register
           </button>
         </form>
+
+        <p style={{ marginTop: "12px" }}>
+          Already have an account?{" "}
+          <span
+            onClick={() => navigate("/login")}
+            style={{ color: "blue", cursor: "pointer" }}
+          >
+            Login
+          </span>
+        </p>
       </div>
     </div>
   );
@@ -74,39 +80,43 @@ function Register() {
 
 export default Register;
 
-// simple UI
+/* 🎨 STYLES */
 const styles = {
   container: {
     height: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "#f5f5f5",
+    background: "linear-gradient(to right, #43e97b, #38f9d7)",
   },
+
   card: {
-    width: "320px",
+    width: "340px",
     padding: "25px",
     background: "white",
-    borderRadius: "10px",
-    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+    borderRadius: "12px",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
     textAlign: "center",
   },
+
   form: {
     display: "flex",
     flexDirection: "column",
-    gap: "10px",
+    gap: "12px",
   },
+
   input: {
     padding: "10px",
+    borderRadius: "6px",
     border: "1px solid #ccc",
-    borderRadius: "5px",
   },
+
   button: {
     padding: "10px",
     background: "green",
     color: "white",
     border: "none",
-    borderRadius: "5px",
+    borderRadius: "6px",
     cursor: "pointer",
   },
 };

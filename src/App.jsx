@@ -8,15 +8,39 @@ import Tasks from "./pages/tasks.jsx";
 
 import Layout from "./components/layout.jsx";
 import ProtectedRoute from "./utils/protectedroute.jsx";
+import PublicRoute from "./utils/publicroute.jsx";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {/* PUBLIC ROUTES */}
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
 
+        {/* PROTECTED ROUTES */}
         <Route
           path="/dashboard"
           element={

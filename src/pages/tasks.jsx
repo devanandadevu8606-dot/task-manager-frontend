@@ -7,8 +7,10 @@ function Tasks() {
   const [title, setTitle] = useState("");
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
+
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
+
   const [loading, setLoading] = useState(false);
 
   // GET TASKS
@@ -75,18 +77,33 @@ function Tasks() {
     setEditTitle(task.title);
   };
 
+  // CANCEL EDIT
+  const cancelEdit = () => {
+    setEditingId(null);
+    setEditTitle("");
+  };
+
   // SAVE EDIT
   const saveEdit = async (id) => {
+    if (!editTitle.trim()) {
+      toast.error("Title cannot be empty");
+      return;
+    }
+
     try {
       await api.put(`/tasks/${id}`, {
         title: editTitle,
       });
 
       toast.success("Task Updated");
+
       setEditingId(null);
+      setEditTitle("");
+
       fetchTasks();
     } catch (err) {
       toast.error("Update Failed");
+      console.log(err);
     }
   };
 
@@ -154,9 +171,22 @@ function Tasks() {
                     onChange={(e) => setEditTitle(e.target.value)}
                     style={styles.editInput}
                   />
-                  <button onClick={() => saveEdit(task._id)}>
-                    Save
-                  </button>
+
+                  <div>
+                    <button
+                      onClick={() => saveEdit(task._id)}
+                      style={styles.editBtn}
+                    >
+                      Save
+                    </button>
+
+                    <button
+                      onClick={cancelEdit}
+                      style={styles.deleteBtn}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </>
               ) : (
                 <>
@@ -201,7 +231,7 @@ function Tasks() {
 
 export default Tasks;
 
-// STYLES
+/* STYLES */
 const styles = {
   page: {
     display: "flex",
