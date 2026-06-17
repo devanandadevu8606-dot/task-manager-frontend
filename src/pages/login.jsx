@@ -32,9 +32,7 @@ function Login() {
 
       navigate("/dashboard");
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Login failed"
-      );
+      toast.error(error.response?.data?.message || "Login failed");
     }
 
     setLoading(false);
@@ -62,11 +60,7 @@ function Login() {
             style={styles.input}
           />
 
-          <button
-            type="submit"
-            disabled={loading}
-            style={styles.button}
-          >
+          <button type="submit" disabled={loading} style={styles.button}>
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
@@ -77,7 +71,6 @@ function Login() {
 
 export default Login;
 
-// 🎨 SIMPLE UI
 const styles = {
   container: {
     height: "100vh",
@@ -86,7 +79,6 @@ const styles = {
     alignItems: "center",
     background: "#f2f4f8",
   },
-
   card: {
     width: "320px",
     padding: "25px",
@@ -95,19 +87,16 @@ const styles = {
     boxShadow: "0 0 10px rgba(0,0,0,0.1)",
     textAlign: "center",
   },
-
   form: {
     display: "flex",
     flexDirection: "column",
     gap: "10px",
   },
-
   input: {
     padding: "10px",
     borderRadius: "5px",
     border: "1px solid #ccc",
   },
-
   button: {
     padding: "10px",
     background: "#007bff",

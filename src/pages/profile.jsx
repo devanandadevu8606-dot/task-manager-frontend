@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import toast from "react-hot-toast";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -11,7 +12,7 @@ function Profile() {
       setUser(res.data.data);
       setName(res.data.data.name);
     } catch (err) {
-      console.log(err.response?.data || err.message);
+      toast.error("Failed to load profile");
     }
   };
 
@@ -22,10 +23,10 @@ function Profile() {
   const updateProfile = async () => {
     try {
       await api.put("/users/me", { name });
-      alert("Profile updated");
+      toast.success("Profile updated");
       fetchUser();
     } catch (err) {
-      console.log(err.response?.data || err.message);
+      toast.error("Update failed");
     }
   };
 
@@ -55,8 +56,26 @@ function Profile() {
 export default Profile;
 
 const styles = {
-  container: { display: "flex", justifyContent: "center", padding: "30px" },
-  card: { width: "400px", padding: "20px", background: "white" },
-  input: { width: "100%", padding: "10px", marginTop: "10px" },
-  button: { marginTop: "10px", padding: "10px", background: "blue", color: "white" },
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    padding: "30px",
+  },
+  card: {
+    width: "400px",
+    padding: "20px",
+    background: "white",
+    borderRadius: "10px",
+  },
+  input: {
+    width: "100%",
+    padding: "10px",
+    marginTop: "10px",
+  },
+  button: {
+    marginTop: "10px",
+    padding: "10px",
+    background: "blue",
+    color: "white",
+  },
 };
